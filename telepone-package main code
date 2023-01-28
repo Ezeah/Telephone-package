@@ -1,6 +1,6 @@
 /* This is a javascript code that uses observer design pattern to implement a telephone and observer class.
 
-Here a telephone class with three different methods add, remove and dial phone number was created. This telephone class uses an observer pattern which has the following methods: add, remove and notify observer. Also,an observer class which has a method that can be called by the telephone class for the purposes of notifying it was created. Furthermore, two observers were added to the telephone class which notifies them any time a number is dialed. One prints the phone number and the other "Now Dialing 2347023232". And finally only numbers that are added can be dialed.*/
+Here a telephone class with three different methods add, remove and dial phone number was created. This telephone class uses an observer pattern which has the following methods: add, remove and notify observer. Also,an observer class which has a method that can be called by the telephone class for the purposes of notification for which it was created. Furthermore, two observers were added to the telephone class which notifies them any time a number is dialed. One prints the phone number and the other "Now Dialing 2347023232". And finally only numbers that are added can be dialed.*/
 
 
   // Here the telephone class has an array of phone numbers and observers.
