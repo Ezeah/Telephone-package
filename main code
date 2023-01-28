@@ -1,0 +1,76 @@
+/* This is a javascript code that uses observer design pattern to implement a telephone and observer class.
+
+Here a telephone class with three different methods add, remove and dial phone number was created. This telephone class uses an observer pattern which has the following methods: add, remove and notify observer. Also,an observer class which has a method that can be called by the telephone class for the purposes of notifying it was created. Furthermore, two observers were added to the telephone class which notifies them any time a number is dialed. One prints the phone number and the other "Now Dialing 2347023232". And finally only numbers that are added can be dialed.*/
+
+
+  // Here the telephone class has an array of phone numbers and observers.
+class Telephone {
+    constructor() {
+        this.phoneNumbers = [];
+        this.observers = [];
+    }
+
+  // This a method used to add a phone number to the phoneNumbers array.
+   addPhoneNumber(number) {
+    if(/^[0-9]{10}$/.test(number)) {
+        this.phoneNumbers.push(number);
+    } else {
+        console.log("Invalid phone number. Phone number must be 10 digits.");
+    }
+}
+
+  // Here is a method used to remove a phone number from the phoneNumbers array.
+    removePhoneNumber(number) {
+        this.phoneNumbers = this.phoneNumbers.filter(phonenumber => phonenumber !== number);
+    }
+
+  // This is a mehod used to dial a phone number.
+    dialPhoneNumber(number) {
+    if (this.phoneNumbers.includes(number)) {
+        this.notifyObservers(number);
+    } else {
+        console.log("Invalid phone number. Please add phone number.")
+    }
+}
+
+  // This method is for adding an observer.
+    addObserver(observer) {
+        this.observers.push(observer);
+    }
+
+  // and this method is for removing an observer.
+    removeObserver(observer) {
+        this.observers = this.observers.filter(observers => observers !== observer);
+    }
+
+  // This method is used to notify observers when a phone number is dialed. 
+    notifyObservers(number) {
+        this.observers.forEach(observer => observer.update(number));
+    }
+}
+
+  // In this observer class is a method that can be called by the telephone class for notification. with this, the telephone class notifies the obsever when a phone number is dialed.
+class Observer {
+    constructor(number) {
+      this.number = number;   
+    }
+    update(number) {
+        console.log(`${this.number} ${number}`)   
+    }
+  }  
+
+const telephone = new Telephone();
+
+const observer1 = new Observer("Phone Number");
+const observer2 = new Observer("Now Dialing");
+const observer3 = new Observer;
+
+telephone.addObserver(observer1);
+telephone.addObserver(observer2);
+telephone.removeObserver(observer3); // This is used to remove an observer.
+
+
+telephone.addPhoneNumber("2347023232"); // output: Phone Number 2347023232
+// telephone.removePhoneNumber("") can be used to remove a phone number.
+telephone.dialPhoneNumber("2347023232"); // output: Now Dialing 2347023232
+
